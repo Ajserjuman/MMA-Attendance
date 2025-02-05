@@ -1,0 +1,148 @@
+<div class="ion-page" id="main-content">
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner name="dots" id="t1"></ion-spinner>
+  </div>  
+<ion-header [translucent]="true" *ngIf="!spinner">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title slot="start">
+      MMA Attendance
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button id="t1">Login</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button id="t2">Sign Up</ion-button>
+    </ion-buttons> -->
+    <ion-button slot="end">
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+    <ion-progress-bar type="indeterminate" color="dark"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="ion-padding" *ngIf="!spinner">
+  <div>
+    <ion-row>
+      <ion-col>
+        <strong>Welcome To Malabar MMA</strong>
+      </ion-col>
+      <ion-col>
+        <ion-buttons>
+          <ion-button fill="solid" shape="box">Save</ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+    <h1>Please Mark your Food</h1>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-segment value="Today" (ionChange)="select($event)">
+          <ion-segment-button value="Today">
+            <ion-label>Today</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Tommarow">
+            <ion-label>Tommarow</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div *ngIf="selectedSegment === 'Today'">
+    <form [formGroup]="today">
+      <ion-row>
+        <ion-item>
+          <ion-select area-label="Breakfast" placeholder="Please Mark if you had Breakfast" formControlName="breakfast" (ngModelChange)="check1('breakfast')">
+          <ion-select-option value="Y">Breakfast</ion-select-option>
+          <ion-select-option value="N">No Food</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-select area-label="Lunch" placeholder="Please Mark if you had Lunch" formControlName="lunch" (ngModelChange)="check()">
+          <ion-select-option value="Y">Lunch</ion-select-option>
+          <ion-select-option value="N">No Food</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-select area-label="Dinner" placeholder="Please Mark if you had Dinner" formControlName="dinner" (ngModelChange)="check()">
+          <ion-select-option value="Y">Dinner</ion-select-option>
+          <ion-select-option value="N">No Food</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Choose Breakfast:</ion-label>
+          <ion-checkbox label="Breakfast" formControlName="breakfast" [value]="true" (ngModelChange)="check1('breakfast')">Breakfast</ion-checkbox>
+          <ion-checkbox label="No Food" formControlName="breakfast" [value]="true" (ngModelChange)="check1('breakfast')">Dinner</ion-checkbox>
+        </ion-item>
+      </ion-row>
+    </form>
+  </div>
+  <div *ngIf="selectedSegment === 'Tommarow'">
+    <form [formGroup]="tommarow">
+      <ion-list>
+      <!-- <ion-item>
+        <ion-select area-label="Tommarow Food" placeholder="Please select the food you want Tommarow" [multiple]="true"  (ionChange)="onSelectionChange($event)">
+          <ng-container *ngFor="let a of this.option">
+            <ion-select-option [value]="a">{{a}}</ion-select-option>
+            <ion-select-option value="Y" formControlName="breakfast">breakfast</ion-select-option>
+            <ion-select-option value="N">No Food</ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item> -->
+      <ion-item>
+        <ion-checkbox label-placement="stacked" alignment="center" formControlName="breakfast" (ngModelChange)="check()">Breakfast</ion-checkbox>
+        <ion-checkbox label-placement="stacked" alignment="center" formControlName="lunch">Lunch</ion-checkbox>
+        <ion-checkbox label-placement="stacked" alignment="center" formControlName="dinner">Dinner</ion-checkbox>
+      </ion-item>
+    </ion-list>
+    </form>
+    
+  </div>
+
+</ion-content>
+</div>
+<!-- 
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content> -->
+
+<!-- <div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+</div> -->
+
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-buttons >
+      <ion-button (click)="submitData()">submit</ion-button>
+    </ion-buttons>
+  </ion-content>
+</ion-menu>

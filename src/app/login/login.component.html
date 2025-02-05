@@ -1,0 +1,63 @@
+<ion-app>
+  <div class="spinner-container" *ngIf="spinner">
+    <ion-spinner name="dots" id="t1"></ion-spinner>
+  </div>
+  <div *ngIf="!spinner" class="background-image">
+    <div class="ion-page" id="main-content">
+       
+      <!-- <ion-header [translucent]="true">
+        <ion-toolbar>
+          <ion-header>
+            MMA
+          </ion-header>
+        </ion-toolbar>
+      </ion-header> -->
+      <!-- <ion-title style="color: white;size: 40px;">
+        Malabar Musim Association
+      </ion-title> -->
+      <div class="container">
+        <ion-card class="centered-card">
+          <ion-card-header>
+            <ion-card-title>
+              Malabar Muslim Association
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-avatar slot="start">
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <form [formGroup]="login">
+              <ion-input style="border: 1px solid white;background: white;" label="Username:" formControlName="username" placeholder="Enter your name"></ion-input>
+              <ion-text color="danger" *ngIf="login?.get('username')?.hasError('required') && login?.get('username')?.touched">
+                Username is required
+              </ion-text>
+              <ion-input style="border: 1px solid white;background: white;" label="Password:" formControlName="password" placeholder="Enter your password"></ion-input>
+              <ion-text color="danger" *ngIf="login?.get('password')?.hasError('required') && login?.get('password')?.touched">
+                password is required
+              </ion-text>
+              <ion-button id="open-toast" expand="block" [disabled]="login.invalid" (click)="loginTo()">Login</ion-button>
+              <ion-button id="open-toast" expand="block"  (click)="signup()">sign Up</ion-button>
+            </form>
+            <!-- <ion-toast trigger="open-toast" message="Login Successfull" [duration]="5000"></ion-toast> -->
+          </ion-card-content>
+        </ion-card>
+      </div>
+      
+      <!-- <ion-content id="ion-padding">
+        <ion-row> -->
+          <!-- <ion-col sty>
+            
+          </ion-col>         -->
+        <!-- </ion-row>
+      </ion-content> -->
+    </div>
+  </div>
+</ion-app>
+
+
+<!-- <ion-chip>
+  <ion-avatar>
+    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+  </ion-avatar>
+  <ion-label>Chip Avatar</ion-label>
+</ion-chip> -->
